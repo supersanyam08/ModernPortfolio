@@ -1,0 +1,56 @@
+Build me a modern, dynamic portfolio website using React + Tailwind + Framer Motion.  
+It should have the following sections and features:
+
+1. Hero Section  
+- Fullscreen gradient background with moving particles.  
+- Name: "Sanyam Agarwal".  
+- One-line tagline: "Electronics Engineer | Data, Product & Finance Enthusiast".  
+- Two buttons: "Download CV" (links to /Sanyam_Agarwal_CV.pdf) and "Contact".  
+- Include a 3D tilt card on the right side showing a featured project.  
+- Use Framer Motion entrance animations for text and buttons.
+
+2. About Section  
+- A short bio describing education (Electronics Engineering graduate), internships (IIT Roorkee – PCB project, Procol – SaaS growth), and skills (Excel, SQL, Python, Tableau, HubSpot).  
+- A sidebar list with quick facts: education, internships, languages (English + French learner), open to roles (Analyst/Product/Data).
+
+3. Projects Grid  
+- Responsive 3-column grid (1 column on mobile).  
+- Each project card shows: tag, title, description, and tech stack.  
+- Hover lift animation using Framer Motion.  
+- Example projects:  
+  a) Soil & Weather Monitoring PCB (Hardware/IoT)  
+  b) Smart Inventory Management (Capstone project)  
+  c) Procol SaaS Growth (Business role)
+
+4. Timeline Section  
+- Vertical timeline for education + work.  
+- Animate items into view on scroll.  
+- Show year, title, short description.
+
+5. Skills Section  
+- Animated skill bars that fill on scroll.  
+- Skills: Excel (85%), SQL (80%), Python (75%), Tableau (70%), HubSpot (65%).  
+
+6. Contact Section  
+- Contact form with fields: Name, Email, Message.  
+- Styled with Tailwind, animated with Framer Motion.  
+- On submit, POST to /api/contact (Express backend).  
+- On the right side, show my email (sanyam@example.com), LinkedIn (linkedin.com/in/sanyam), and hobbies (Football, Chess, Films, Formula 1).  
+
+7. Footer  
+- Simple centered footer with © {year} Sanyam Agarwal.  
+- Mention “Built with React · Framer Motion · Tailwind”.
+
+8. SEO + Performance (in index.html)  
+- Add meta tags (title, description, author).  
+- Add Open Graph + Twitter card tags.  
+- Add JSON-LD schema for Person with my details.  
+- Preload fonts, lazy-load images.
+
+Requirements:  
+- Use Tailwind for layout & styling.  
+- Use Framer Motion for animations.  
+- Use react-tsparticles for particle background.  
+- Make it fully responsive (mobile → desktop).  
+- Accessible: labels, aria attributes, good contrast.  
+- Code should be clean and production-ready.

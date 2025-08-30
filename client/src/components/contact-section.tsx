@@ -174,11 +174,11 @@ export default function ContactSection() {
                   <div>
                     <div className="font-medium">Email</div>
                     <a
-                      href="mailto:sanyam@example.com"
+                      href="mailto:sanyam812ag@gmail.com"
                       className="text-primary hover:text-accent transition-colors"
                       data-testid="link-email"
                     >
-                      sanyam@example.com
+                      sanyam812ag@gmail.com
                     </a>
                   </div>
                 </div>
@@ -190,7 +190,7 @@ export default function ContactSection() {
                   <div>
                     <div className="font-medium">LinkedIn</div>
                     <a
-                      href="https://linkedin.com/in/sanyam"
+                      href="https://www.linkedin.com/in/sanyam-agarwal-474516227/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-accent transition-colors"

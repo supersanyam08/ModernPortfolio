@@ -2,21 +2,21 @@ import { motion } from "framer-motion";
 
 const timelineItems = [
   {
-    year: "2023",
+    year: "2025",
     title: "Procol - SaaS Growth Intern",
     description: "Drove growth initiatives, analyzed user behavior, and optimized conversion funnels for B2B SaaS platform.",
     color: "bg-accent",
     side: "left"
   },
   {
-    year: "2022",
+    year: "2023",
     title: "IIT Roorkee - Research Intern",
     description: "Developed PCB solutions for soil and weather monitoring systems with integrated IoT capabilities.",
     color: "bg-primary",
     side: "right"
   },
   {
-    year: "2019-2023",
+    year: "2021-2025",
     title: "Electronics Engineering",
     description: "Bachelor's degree with focus on embedded systems, signal processing, and circuit design.",
     color: "bg-purple-500",

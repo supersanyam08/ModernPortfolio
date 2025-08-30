@@ -84,8 +84,9 @@ export default function AboutSection() {
                 <div>
                   <div className="font-medium">Experience</div>
                   <div className="text-sm text-muted-foreground">
-                    <div>IIT Roorkee - PCB Development</div>
                     <div>Procol - SaaS Growth</div>
+                    <div>IIT Roorkee - PCB Development</div>
+                    
                   </div>
                 </div>
               </div>
@@ -106,9 +107,10 @@ export default function AboutSection() {
                 <div>
                   <div className="font-medium">Open to Roles</div>
                   <div className="text-sm text-muted-foreground">
-                    <div>Data Analyst</div>
-                    <div>Product Manager</div>
                     <div>Business Analyst</div>
+                    <div>Data Analyst</div>
+                    <div>Associate Product Manager</div>
+                    
                   </div>
                 </div>
               </div>

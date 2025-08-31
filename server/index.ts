@@ -60,7 +60,8 @@ app.use((req, res, next) => {
   const port = parseInt(process.env.PORT || "5000", 10);
 
   // ✅ Fixed for Windows: use localhost and remove reusePort
-  server.listen(port, "127.0.0.1", () => {
-    log(`serving on http://localhost:${port}`);
-  });
+  server.listen(port, () => {
+  log(`serving on http://0.0.0.0:${port}`);
+});
+
 })();

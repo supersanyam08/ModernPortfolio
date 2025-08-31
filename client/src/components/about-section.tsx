@@ -39,26 +39,41 @@ export default function AboutSection() {
             >
               About Me
             </motion.h2>
-            <motion.div 
-              className="space-y-4 text-lg text-muted-foreground leading-relaxed"
-              variants={itemVariants}
-            >
-              <p data-testid="about-education">
-                I'm an <strong>Electronics Engineering graduate</strong> with a passion for bridging the gap between 
-                technical innovation and business impact. My journey spans from designing PCB circuits to analyzing 
-                data patterns and driving SaaS growth.
-              </p>
-              <p data-testid="about-experience">
-                Through my internships at <strong>IIT Roorkee</strong> (PCB project development) and{" "}
-                <strong>Procol</strong> (SaaS growth initiatives), I've developed a unique blend of technical 
-                expertise and business acumen. I thrive at the intersection of technology and strategy.
-              </p>
-              <p data-testid="about-skills">
-                I'm proficient in <strong>Excel, SQL, Python, Tableau, and HubSpot</strong>, with hands-on 
-                experience in data analysis, product development, and growth marketing. I believe in the power 
-                of data-driven decision making and user-centric product development.
-              </p>
-            </motion.div>
+            <motion.div
+  className="space-y-4 text-lg text-muted-foreground leading-relaxed"
+  variants={itemVariants}
+>
+  {/* Mobile version (shortened) */}
+  <div className="block md:hidden space-y-3">
+    <p>
+      <strong>Electronics Engineer</strong> with experience in PCB design, data analysis, and SaaS growth.  
+      Skilled in <strong>Excel, SQL, Python, Tableau, HubSpot</strong>.  
+    </p>
+    <p>
+      Passionate about solving real problems by blending <strong>technology and strategy</strong>.
+    </p>
+  </div>
+
+  {/* Desktop / tablet version (full) */}
+  <div className="hidden md:block space-y-4">
+    <p data-testid="about-education">
+      I'm an <strong>Electronics Engineering graduate</strong> with a passion for bridging the gap between 
+      technical innovation and business impact. My journey spans from designing PCB circuits to analyzing 
+      data patterns and driving SaaS growth.
+    </p>
+    <p data-testid="about-experience">
+      Through my internships at <strong>IIT Roorkee</strong> (PCB project development) and{" "}
+      <strong>Procol</strong> (SaaS growth initiatives), I've developed a unique blend of technical 
+      expertise and business acumen. I thrive at the intersection of technology and strategy.
+    </p>
+    <p data-testid="about-skills">
+      I'm proficient in <strong>Excel, SQL, Python, Tableau, and HubSpot</strong>, with hands-on 
+      experience in data analysis, product development, and growth marketing. I believe in the power 
+      of data-driven decision making and user-centric product development.
+    </p>
+  </div>
+</motion.div>
+
           </motion.div>
 
           <motion.div

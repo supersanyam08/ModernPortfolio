@@ -12,6 +12,7 @@ const timelineItems = [
   {
     year: "2024",
     title: "CAT Examination",
+    marks: "94.8 percentile",
     description:
       "Appeared for the Common Admission Test (CAT) and secured a 94.8 percentile, demonstrating strong analytical and problem-solving abilities.",
     color: "bg-green-500",
@@ -35,15 +36,11 @@ const timelineItems = [
   },
 ];
 
-
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-    },
+    transition: { staggerChildren: 0.3 },
   },
 };
 
@@ -67,9 +64,15 @@ export default function TimelineSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold gradient-text mb-4" data-testid="timeline-title">My Journey</h2>
+          <h2
+            className="text-4xl font-bold gradient-text mb-4"
+            data-testid="timeline-title"
+          >
+            My Journey
+          </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A timeline of my educational background and professional experiences.
+            A timeline of my educational background and professional
+            experiences.
           </p>
         </motion.div>
 
@@ -96,23 +99,51 @@ export default function TimelineSection() {
                     <>
                       <div className="w-1/2 pr-8 text-right">
                         <div className="glass-card p-6 rounded-xl">
-                          <div className="text-primary font-bold text-lg">{item.year}</div>
-                          <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                          <p className="text-muted-foreground">{item.description}</p>
+                          <div className="text-primary font-bold text-lg">
+                            {item.year}
+      
+                          </div>
+                          <h3 className="text-xl font-bold mb-2">
+                            {item.title}
+                          </h3>
+
+                          {/* ✅ Desktop: Show full description */}
+                          <p className="hidden md:block text-muted-foreground">
+                            {item.description}
+                          </p>
+                          
                         </div>
                       </div>
-                      <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 ${item.color} rounded-full border-4 border-background shadow-lg`}></div>
+                      <div
+                        className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 ${item.color} rounded-full border-4 border-background shadow-lg`}
+                      ></div>
                       <div className="w-1/2 pl-8"></div>
                     </>
                   ) : (
                     <>
                       <div className="w-1/2 pr-8"></div>
-                      <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 ${item.color} rounded-full border-4 border-background shadow-lg`}></div>
+                      <div
+                        className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 ${item.color} rounded-full border-4 border-background shadow-lg`}
+                      ></div>
                       <div className="w-1/2 pl-8">
                         <div className="glass-card p-6 rounded-xl">
-                          <div className="text-accent font-bold text-lg">{item.year}</div>
-                          <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                          <p className="text-muted-foreground">{item.description}</p>
+                          <div className="text-accent font-bold text-lg">
+                            {item.year}
+                          </div>
+                          <h3 className="text-xl font-bold mb-2">
+                            {item.title}
+                            
+                          </h3>
+
+                          {/* ✅ Desktop: Show full description */}
+                          <p className="hidden md:block text-muted-foreground">
+                            {item.description}
+                          </p>
+                          {item.title.includes("CAT") && (
+    <p className="block md:hidden text-sm text-muted-foreground">
+      Secured <strong>94.8 percentile</strong>
+    </p>
+  )}
                         </div>
                       </div>
                     </>

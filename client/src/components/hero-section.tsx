@@ -281,6 +281,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
       {/* Scroll Cue Arrow */}
+      
 <motion.div
   className="absolute bottom-6 left-1/2 transform -translate-x-1/2 cursor-pointer z-20"
   initial={{ opacity: 0, y: -10 }}
@@ -305,6 +306,8 @@ export default function HeroSection() {
   </svg>
 </motion.div>
 {/* Tech Stack Box */}
+<div className="hidden md:block">
+
 <motion.div
   className="absolute bottom-4 left-4 glass-card px-4 py-3 rounded-xl text-xs md:text-sm shadow-lg bg-white/10 backdrop-blur-md"
   initial={{ opacity: 0, x: 30, y: 30 }}
@@ -321,6 +324,7 @@ export default function HeroSection() {
   <li>🤖 Prompt Engineering</li>
   </ul>
 </motion.div>
+</div>
 
 
     </section>

@@ -4,20 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-
-const contactSchema = z.object({
-  name: z.string().min(1, "Name is required").min(2, "Name must be at least 2 characters"),
-  email: z.string().min(1, "Email is required").email("Please enter a valid email"),
-  message: z.string().min(1, "Message is required").min(10, "Message must be at least 10 characters"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
 
 const hobbies = ["Football", "Chess", "Films", "Formula 1"];
 
@@ -42,37 +30,44 @@ const itemVariants = {
 
 export default function ContactSection() {
   const { toast } = useToast();
-  const queryClient = useQueryClient();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  const contactMutation = useMutation({
-    mutationFn: (data: ContactFormData) => apiRequest("POST", "/api/contact", data),
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xgvlyvpy", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
       });
-      reset();
-    },
-    onError: (error: any) => {
+
+      if (response.ok) {
+        toast({
+          title: "✅ Message sent successfully!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "❌ Failed to send message",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (err) {
       toast({
-        title: "Failed to send message",
-        description: error.message || "Please try again later.",
+        title: "❌ Network error",
+        description: "Please check your connection and try again.",
         variant: "destructive",
       });
-    },
-  });
-
-  const onSubmit = (data: ContactFormData) => {
-    contactMutation.mutate(data);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -85,7 +80,12 @@ export default function ContactSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold gradient-text mb-4" data-testid="contact-title">Get In Touch</h2>
+          <h2
+            className="text-4xl font-bold gradient-text mb-4"
+            data-testid="contact-title"
+          >
+            Get In Touch
+          </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Let's discuss opportunities and how we can work together.
           </p>
@@ -99,72 +99,84 @@ export default function ContactSection() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             className="glass-card p-8 rounded-2xl"
             variants={itemVariants}
             data-testid="contact-form"
           >
             <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</Label>
+                <Label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Full Name
+                </Label>
                 <Input
                   id="name"
-                  {...register("name")}
+                  name="name"
                   placeholder="Your full name"
                   className="w-full"
+                  required
                   data-testid="input-name"
                 />
-                {errors.name && (
-                  <p className="text-destructive text-sm mt-1">{errors.name.message}</p>
-                )}
               </div>
 
               <div>
-                <Label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</Label>
+                <Label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Email Address
+                </Label>
                 <Input
                   id="email"
                   type="email"
-                  {...register("email")}
+                  name="email"
                   placeholder="your.email@example.com"
                   className="w-full"
+                  required
                   data-testid="input-email"
                 />
-                {errors.email && (
-                  <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
-                )}
               </div>
 
               <div>
-                <Label htmlFor="message" className="block text-sm font-medium mb-2">Message</Label>
+                <Label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Message
+                </Label>
                 <Textarea
                   id="message"
-                  {...register("message")}
+                  name="message"
                   rows={5}
                   placeholder="Tell me about your project or opportunity..."
                   className="w-full resize-none"
+                  required
                   data-testid="textarea-message"
                 />
-                {errors.message && (
-                  <p className="text-destructive text-sm mt-1">{errors.message.message}</p>
-                )}
               </div>
 
               <Button
                 type="submit"
                 size="lg"
+                disabled={isSubmitting}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transform hover:scale-105 transition-all duration-300"
-                disabled={contactMutation.isPending}
                 data-testid="button-submit"
               >
-                {contactMutation.isPending ? "Sending..." : "Send Message"}
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </motion.div>
 
           {/* Contact Info */}
           <motion.div className="space-y-8" variants={itemVariants}>
-            <div className="glass-card p-8 rounded-2xl" data-testid="contact-info">
+            <div
+              className="glass-card p-8 rounded-2xl"
+              data-testid="contact-info"
+            >
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -203,7 +215,10 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="glass-card p-8 rounded-2xl" data-testid="hobbies-card">
+            <div
+              className="glass-card p-8 rounded-2xl"
+              data-testid="hobbies-card"
+            >
               <h3 className="text-2xl font-bold mb-6">Interests & Hobbies</h3>
               <div className="space-y-3">
                 {hobbies.map((hobby, index) => (

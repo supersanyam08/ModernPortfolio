@@ -4,25 +4,38 @@ const timelineItems = [
   {
     year: "2025",
     title: "Procol - SaaS Growth Intern",
-    description: "Drove growth initiatives, analyzed user behavior, and optimized conversion funnels for B2B SaaS platform.",
+    description:
+      "Drove growth initiatives, analyzed user behavior, and optimized conversion funnels for B2B SaaS platform.",
     color: "bg-accent",
-    side: "left"
+    side: "left",
+  },
+  {
+    year: "2024",
+    title: "CAT Examination",
+    description:
+      "Appeared for the Common Admission Test (CAT) and secured a 94.8 percentile, demonstrating strong analytical and problem-solving abilities.",
+    color: "bg-green-500",
+    side: "right",
   },
   {
     year: "2023",
     title: "IIT Roorkee - Research Intern",
-    description: "Developed PCB solutions for soil and weather monitoring systems with integrated IoT capabilities.",
+    description:
+      "Developed PCB solutions for soil and weather monitoring systems with integrated IoT capabilities.",
     color: "bg-primary",
-    side: "right"
+    side: "left",
   },
   {
     year: "2021-2025",
     title: "Electronics Engineering",
-    description: "Bachelor's degree with focus on embedded systems, signal processing, and circuit design.",
+    description:
+      "Bachelor's degree with focus on embedded systems, signal processing, and circuit design.",
     color: "bg-purple-500",
-    side: "left"
-  }
+    side: "right", // ✅ must be right to show up
+  },
 ];
+
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
